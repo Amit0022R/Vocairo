@@ -117,7 +117,17 @@ export function Header() {
   );
 }
 
+function KeyButton() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
+  const handleClick = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("customKey", "true");
+    const newUrl = params.toString() ? `${pathname}?${params}` : pathname;
+    router.push(newUrl);
+  };
 
   return (
     <Button
